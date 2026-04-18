@@ -1,0 +1,17 @@
+import type { Product } from "../types/product";
+
+const BASE_URL = 'http://localhost:3000/api';
+
+export const productsApi = {
+    getAll: async (): Promise<Product[]> => {
+        const res = await fetch(`${BASE_URL}/products`)
+
+        if (!res.ok) {
+            throw new Error('Failed to fetch products')
+        }
+
+        const json = await res.json();
+        console.log(json);
+        return json.data;
+    },
+};

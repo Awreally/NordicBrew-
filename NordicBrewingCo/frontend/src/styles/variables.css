@@ -1,0 +1,20 @@
+:root {
+    --color-primary: #1B432E;
+    --color-secondary: #A67C52;
+    --color-teritary: #7D6B5D;
+    --color-neutral: #FDF8F1;
+
+/* Fonts */
+    --color-font-primary: #012D19;
+    --color-font-secondary: #1D1C18;
+    /* Accent Colors */
+    --color-secondary-borders: #7C5730;
+    --color-secondary-tags: #F9DCC4;
+    --color-secondary-labels: #e29578;
+
+    /* BG-color */
+    --color-bg: #FEF9F2;
+    --color-bg-section: #F2EDe6;
+
+    /*  */
+}
