@@ -1,4 +1,19 @@
-import { Schema, model, InferSchemaType } from "mongoose";
+import { Schema, model } from "mongoose";
+import { ProductCategory } from "./product.types";
+
+export type IProduct = {
+  _id: { toString(): string };
+  slug: string;
+  name: string;
+  description: string;
+  price: number;
+  compareAtPrice?: number | null;
+  inStock: boolean;
+  category: ProductCategory;
+  imageUrl: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 const productSchema = new Schema(
   {
@@ -48,7 +63,5 @@ const productSchema = new Schema(
     timestamps: true,
   },
 );
-
-export type ProductDb = InferSchemaType<typeof productSchema>;
 
 export const ProductModel = model("Product", productSchema);

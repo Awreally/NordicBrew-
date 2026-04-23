@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import productsRouter from "./routes/products";
 import { errorHandler } from "./middleware/errorHandler";
 import { env } from "./config/env";
+import productRouter from "./api/products/product.routes";
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(
 );
 
 app.use(express.json());
-app.use("/api/products", productsRouter);
+app.use("/api/products", productRouter);
 
 app.use(errorHandler);
 
