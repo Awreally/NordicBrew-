@@ -1,20 +1,36 @@
 :root {
-    --color-primary: #1B432E;
-    --color-secondary: #A67C52;
-    --color-teritary: #7D6B5D;
-    --color-neutral: #FDF8F1;
+  --color-primary: #1b432e;
+  --color-secondary: #a67c52;
+  --color-teritary: #7d6b5d;
+  --color-neutral: #fdf8f1;
 
-/* Fonts */
-    --color-font-primary: #012D19;
-    --color-font-secondary: #1D1C18;
-    /* Accent Colors */
-    --color-secondary-borders: #7C5730;
-    --color-secondary-tags: #F9DCC4;
-    --color-secondary-labels: #e29578;
+  /* Fonts */
+  --color-font-primary: #012d19;
+  --color-font-secondary: #1d1c18;
+  /* Accent Colors */
+  --color-secondary-borders: #7c5730;
+  --color-secondary-tags: #f9dcc4;
+  --color-secondary-labels: #e29578;
 
-    /* BG-color */
-    --color-bg: #FEF9F2;
-    --color-bg-section: #F2EDe6;
+  /* BG-color */
+  --color-bg: #fef9f2;
+  --color-bg-section: #f2ede6;
 
-    /*  */
+   /* Colors */
+  --primary-green: #1B432E;
+  --nordic-midnight: #012D19;
+  --hearth-cream: #FEF9F2;
+  --soft-stone: #F2EDE6;
+  --roasted-earth: #7C5730;
+  --sun-drenched-wheat: #F9DCC4;
+  --amber-glow: #E29578;
+
+  /* Typography */
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Newsreader", serif;
+  
+  /* Spacing & Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --spacing-unit: 8px;
 }

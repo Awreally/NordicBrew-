@@ -1,4 +1,4 @@
-import type { Product } from "../types/product";
+import type { Product } from "../types/product.types";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
@@ -11,7 +11,6 @@ export const productsApi = {
         }
 
         const json = await res.json();
-        console.log(json);
-        return json.data;
+        return json;
     },
 };

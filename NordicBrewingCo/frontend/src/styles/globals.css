@@ -1,5 +1,29 @@
 @import "./variables.css";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-    background: var(--color-bg);
+  margin: 0;
+  padding: 0;
+  background-color: var(--hearth-cream);
+  color: var(--nordic-midnight);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary-green);
 }

@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  font-weight: bold;
+}

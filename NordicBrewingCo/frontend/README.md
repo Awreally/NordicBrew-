@@ -1,73 +1,139 @@
-# React + TypeScript + Vite
+:root {
+  /* Colors */
+  --primary-green: #1B432E;
+  --nordic-midnight: #012D19;
+  --hearth-cream: #FEF9F2;
+  --soft-stone: #F2EDE6;
+  --roasted-earth: #7C5730;
+  --sun-drenched-wheat: #F9DCC4;
+  --amber-glow: #E29578;
+  
+  /* Typography */
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Newsreader', serif;
+  
+  /* Spacing & Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --spacing-unit: 8px;
+}
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+/* Global Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-Currently, two official plugins are available:
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--hearth-cream);
+  color: var(--nordic-midnight);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary-green);
+}
 
-## React Compiler
+/* Hero Section */
+.hero-container {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  background-size: cover;
+  background-position: center;
+}
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+.hero-content {
+  max-width: 600px;
+  z-index: 2;
+}
 
-## Expanding the ESLint configuration
+.hero-title {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(1, 45, 25, 0.8);
+  margin-bottom: 2.5rem;
+}
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: var(--radius-sm);
+}
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+.btn-primary {
+  background-color: var(--primary-green);
+  color: white;
+}
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+.btn-primary:hover {
+  background-color: var(--nordic-midnight);
+  transform: translateY(-2px);
+}
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+.btn-secondary {
+  color: var(--primary-green);
+  border-bottom: 2px solid transparent;
+}
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+.btn-secondary:hover {
+  border-bottom-color: var(--roasted-earth);
+}
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+/* Grid Systems */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  padding: 4rem 8%;
+}
+
+.product-card {
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+}
+
+.product-image-container {
+  background-color: var(--soft-stone);
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* Utility Classes */
+.text-serif-italic {
+  font-family: var(--font-body);
+  font-style: italic;
+}
+
+.text-caps-tracking {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}

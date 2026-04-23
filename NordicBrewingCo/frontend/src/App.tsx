@@ -1,4 +1,4 @@
-import ProductList from "./components/ProductList"
+import ProductList from "./features/products/components/ProductList"
 
 const App = () => {
   return (
