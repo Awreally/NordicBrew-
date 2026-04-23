@@ -4,6 +4,7 @@ import { HomePage } from "../pages/HomePage";
 import { ShopPage } from "../pages/ShopPage";
 import { ShopProductPage } from "../pages/ShopProductPage";
 import { SubscriptionPage } from "../pages/SubscriptionPage";
+import { BrewPage } from "../pages/BrewPage";
 import { StoryPage } from "../pages/StoryPage";
 import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: "shop", element: <ShopPage /> },
       { path: "shop/:slug", element: <ShopProductPage /> },
       { path: "subscription", element: <SubscriptionPage/> },
+      { path: "brewguides", element: <BrewPage />},
       { path: "ourstory", element: <StoryPage />},
       { path: "cart", element: <CartPage />},
       { path: "login", element: <LoginPage />}

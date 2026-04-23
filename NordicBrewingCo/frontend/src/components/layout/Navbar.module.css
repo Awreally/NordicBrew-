@@ -1,19 +1,114 @@
-.navbar {
+.navWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(27, 67, 46, 0.05);
+  transition: all 0.4s ease-in-out;
+}
+
+.navContainer {
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+}
+
+.navBrand {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.navLogoLink {
   display: flex;
   align-items: center;
-  gap: 1rem;
-}
-
-.logo {
-  width: 100px;
-  height: auto;
-}
-
-.link {
   text-decoration: none;
-  color: black;
+  transition: transform 0.3s ease;
+}
+
+.navLogoLink:hover {
+  transform: scale(1.1);
+}
+
+.navLogo {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-self: center;
+}
+
+.navItem {
+  display: flex;
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: rgba(29, 28, 24, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.navLink:hover {
+  color: var(--nordic-midnight);
+}
+
+.navWrapper.scrolled {
+  background-color: var(--hearth-cream);
+  padding: 0.75rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .active {
-  font-weight: bold;
+  color: var(--nordic-midnight);
+  border-bottom: 2px solid var(--roasted-earth);
+}
+
+.navActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  justify-self: end;
+  min-width: 0;
+}
+
+.navActionIcon {
+  color: var(--nordic-midnight);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navActionIcon:hover {
+  opacity: 0.7;
+  transform: translateY(-1px);
+}
+
+.activeIcon {
+  color: var(--nordic-midnight);
+  border-bottom: 2px solid var(--roasted-earth);
 }
