@@ -1,16 +1,5 @@
-import type { Product } from "../types/product.types";
+import { apiFetch } from "../../../lib/api";
+import type { ProductResponse } from "../types/product.types";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
-
-export const productsApi = {
-    getAll: async (): Promise<Product[]> => {
-        const res = await fetch(`${BASE_URL}/products`)
-
-        if (!res.ok) {
-            throw new Error('Failed to fetch products')
-        }
-
-        const json = await res.json();
-        return json;
-    },
-};
+export const fetchProducts = async (): Promise<ProductResponse[]> =>
+    apiFetch<ProductResponse[]>("/products");
