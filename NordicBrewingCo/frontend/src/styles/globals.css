@@ -17,6 +17,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding-top: 6.5rem;
+}
+
 h1,
 h2,
 h3,

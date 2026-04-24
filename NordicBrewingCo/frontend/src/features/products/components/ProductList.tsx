@@ -13,6 +13,7 @@ const ProductList = () => {
       try {
         const data = await productsApi.getAll();
         setProducts(data);
+        console.log(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong");
       } finally {
@@ -25,16 +26,29 @@ const ProductList = () => {
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+  
 
-  return (
+   return (
+  <>
+    <p>Count: {products.length}</p>
     <ul>
       {products.map((product) => (
         <li key={product.id}>
-          {product.name} - {product.price} kr
+          <article>
+            <img src={product.imageUrl} alt=""/>
+            <h2>{product.name}</h2>
+            <div>
+            <p>{product.price} kr</p>
+            <p>{product.description}</p>
+            </div>
+          
+          </article>
         </li>
       ))}
     </ul>
-  );
+  </>
+);
+
 };
 
 export default ProductList;
