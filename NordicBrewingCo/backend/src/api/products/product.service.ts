@@ -7,8 +7,12 @@ import { ProductModel } from "./product.model";
 import { toProductResponse, toProductResponseList } from "./product.mapper";
 import { AppError } from "../../errors/AppError";
 
-export const getAllProducts = async (): Promise<ProductResponse[]> => {
-  const products = await ProductModel.find();
+export const getAllProducts = async (filters: {
+  category?: string;
+}): Promise<ProductResponse[]> => {
+  const query: Record<string, unknown> = {};
+  if (filters.category) query.category = filters.category;
+  const products = await ProductModel.find(query);
   return toProductResponseList(products);
 };
 

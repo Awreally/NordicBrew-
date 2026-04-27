@@ -1,0 +1,15 @@
+.productListWrapper {
+  flex: 1;
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .productList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

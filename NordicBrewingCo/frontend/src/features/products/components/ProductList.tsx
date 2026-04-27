@@ -1,5 +1,6 @@
 import type { ProductResponse } from "../types/product.types";
 import { ProductCard } from "./ProductCard";
+import styles from "./ProductList.module.css";
 
 interface ProductListProps {
   products: ProductResponse[];
@@ -7,10 +8,12 @@ interface ProductListProps {
 
 export const ProductList = ({ products }: ProductListProps) => {
   return (
-    <div>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <section className={styles.productGrid}>
+      <div className={styles.productList}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </section>
   );
 };

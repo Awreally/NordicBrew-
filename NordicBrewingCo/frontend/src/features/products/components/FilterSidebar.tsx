@@ -1,6 +1,9 @@
 import styles from "./FilterSidebar.module.css";
+import { useProductFilter } from "../hooks/useProductFilter";
 
 export const FilterSidebar = () => {
+  const {category, setCategory} = useProductFilter();
+
   return (
     <aside className={styles.filtersAside}>
       <div>
@@ -38,11 +41,16 @@ export const FilterSidebar = () => {
       <div>
         <h3 className={styles.filterTitle}>Region</h3>
 
-        <select className={styles.select} defaultValue="All Regions">
-          <option>All Regions</option>
-          <option>Ethiopia</option>
-          <option>Colombia</option>
-          <option>Norway (Roastery)</option>
+        <select 
+        className={styles.select} 
+        defaultValue="All Regions"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">All Regions</option>
+          <option value="whole-bean">Whole bean</option>
+          <option value="ground">Ground</option>
+          <option value="cold-brew">Coldbrew</option>
         </select>
       </div>
     </aside>

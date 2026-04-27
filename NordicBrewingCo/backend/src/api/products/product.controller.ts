@@ -18,7 +18,8 @@ export const getProducts = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const products = await getAllProducts();
+    const { category } = req.query;
+    const products = await getAllProducts({ category: category as string });
     res.status(200).json(products);
   } catch (err) {
     next(err);

@@ -19,7 +19,11 @@ export const router = createBrowserRouter([
     hydrateFallbackElement: <RouteLoading />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "shop", element: <ShopPage />, loader: fetchProducts, },
+      { path: "shop", element: <ShopPage />, loader: ({ request }) => {
+        const url = new URL(request.url);
+        const category = url.searchParams.get("category") ?? undefined;
+        return fetchProducts(category);
+      } },
       { path: "shop/:slug", element: <ShopProductPage /> },
       { path: "subscription", element: <SubscriptionPage /> },
       { path: "brewguides", element: <BrewPage /> },
