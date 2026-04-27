@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { ProductCategory } from "./product.types";
+import { ProductCategory, FlavorProfile, CoffeeOrigin } from "./product.types";
 
 export type IProduct = {
   _id: { toString(): string };
@@ -11,6 +11,8 @@ export type IProduct = {
   inStock: boolean;
   category: ProductCategory;
   imageUrl: string;
+  flavorProfiles: FlavorProfile[];
+  origin: CoffeeOrigin;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -51,12 +53,32 @@ const productSchema = new Schema(
     category: {
       type: String,
       required: true,
-      enum: ["whole-bean", "ground", "cold-brew"],
+      enum: ["whole-bean", "ground", "cold-brew", "espresso"],
     },
     imageUrl: {
       type: String,
       required: true,
       trim: true,
+    },
+    flavorProfiles: {
+      type: [String],
+      required: true,
+      enum: [
+        "citrus",
+        "chocolate",
+        "caramel",
+        "floral",
+        "nutty",
+        "smoky",
+        "fruity",
+        "spicy",
+      ],
+      default: [],
+    },
+    origin: {
+      type: String,
+      required: true,
+      enum: ["ethiopia", "colombia", "brazil", "costa-rica", "rwanda",] satisfies CoffeeOrigin[]
     },
   },
   {

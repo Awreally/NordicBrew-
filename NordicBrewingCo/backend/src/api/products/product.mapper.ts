@@ -11,6 +11,8 @@ export const toProductResponse = (product: IProduct): ProductResponse => ({
   inStock: product.inStock,
   category: product.category,
   imageUrl: product.imageUrl,
+  flavorProfile: product.flavorProfiles,
+  origin: product.origin, 
   createdAt: product.createdAt.toISOString(),
   updatedAt: product.updatedAt.toISOString(),
 });
