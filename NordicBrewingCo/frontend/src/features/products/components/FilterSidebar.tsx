@@ -1,58 +1,72 @@
 import styles from "./FilterSidebar.module.css";
 import { useProductFilter } from "../hooks/useProductFilter";
-
+import { roastLevels, flavorProfiles, categories } from "../constants/filterOptions";
+import type { ProductCategory } from "../types/product.types";
 export const FilterSidebar = () => {
-  const {category, setCategory} = useProductFilter();
+  const { category, roast, flavorProfile, setFilters } = useProductFilter();
 
   return (
     <aside className={styles.filtersAside}>
+
       <div>
         <h3 className={styles.filterTitle}>Roast Level</h3>
-
         <div className={styles.radioGroup}>
-          <label className={styles.radioLabel}>
-            <div className={styles.radioCircle}></div>
-            <span className={styles.radioText}>Light Roast</span>
-          </label>
-
-          <label className={styles.radioLabel}>
-            <div className={styles.radioCircleActive}></div>
-            <span className={styles.radioTextActive}>Medium Roast</span>
-          </label>
-
-          <label className={styles.radioLabel}>
-            <div className={styles.radioCircle}></div>
-            <span className={styles.radioText}>Dark Roast</span>
-          </label>
+          {roastLevels.map((level) => (
+            <label key={level.value} className={styles.radioLabel}>
+              <div
+                className={roast === level.value ? styles.radioCircleActive : styles.radioCircle}
+                onClick={() => setFilters({
+                  category,
+                  roast: roast === level.value ? undefined : level.value,
+                  flavorProfile,
+                })}
+              />
+              <span className={roast === level.value ? styles.radioTextActive : styles.radioText}>
+                {level.label}
+              </span>
+            </label>
+          ))}
         </div>
       </div>
 
       <div>
         <h3 className={styles.filterTitle}>Flavor Profile</h3>
-
         <div className={styles.tagGroup}>
-          <button className={styles.tagButtonActive}>Citrus</button>
-          <button className={styles.tagButton}>Nutty</button>
-          <button className={styles.tagButton}>Smoky</button>
-          <button className={styles.tagButton}>Fruity</button>
+          {flavorProfiles.map((flavor) => (
+            <button
+              key={flavor.value}
+              className={flavorProfile === flavor.value ? styles.tagButtonActive : styles.tagButton}
+              onClick={() => setFilters({
+                category,
+                roast,
+                flavorProfile: flavorProfile === flavor.value ? undefined : flavor.value, // toggle
+              })}
+            >
+              {flavor.label}
+            </button>
+          ))}
         </div>
       </div>
 
       <div>
-        <h3 className={styles.filterTitle}>Region</h3>
-
-        <select 
-        className={styles.select} 
-        defaultValue="All Regions"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        <h3 className={styles.filterTitle}>Category</h3>
+        <select
+          className={styles.select}
+          value={category ?? ""}
+          onChange={(e) => setFilters({
+            category: e.target.value as ProductCategory || undefined,
+            roast,
+            flavorProfile,
+          })}
         >
-          <option value="">All Regions</option>
-          <option value="whole-bean">Whole bean</option>
-          <option value="ground">Ground</option>
-          <option value="cold-brew">Coldbrew</option>
+          {categories.map((cat) => (
+            <option key={cat.value} value={cat.value}>
+              {cat.label}
+            </option>
+          ))}
         </select>
       </div>
+
     </aside>
   );
-}
+};

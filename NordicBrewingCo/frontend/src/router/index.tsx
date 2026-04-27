@@ -10,6 +10,12 @@ import { StoryPage } from "../pages/StoryPage";
 import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
 import { fetchProducts } from "../features/products/api/product.api";
+import type {
+  ProductCategory,
+  ProductRoast,
+  CoffeeOrigin,
+  FlavorProfile,
+} from "../features/products/types/product.types";
 
 export const router = createBrowserRouter([
   {
@@ -19,11 +25,23 @@ export const router = createBrowserRouter([
     hydrateFallbackElement: <RouteLoading />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "shop", element: <ShopPage />, loader: ({ request }) => {
-        const url = new URL(request.url);
-        const category = url.searchParams.get("category") ?? undefined;
-        return fetchProducts(category);
-      } },
+      {
+        path: "shop",
+        element: <ShopPage />,
+        loader: ({ request }) => {
+          const url = new URL(request.url);
+          const category =
+            (url.searchParams.get("category") as ProductCategory) ?? undefined;
+          const roast =
+            (url.searchParams.get("roast") as ProductRoast) ?? undefined;
+          const origin =
+            (url.searchParams.get("origin") as CoffeeOrigin) ?? undefined;
+          const flavorProfile =
+            (url.searchParams.get("flavorProfile") as FlavorProfile) ??
+            undefined;
+          return fetchProducts({ category, roast, origin, flavorProfile });
+        },
+      },
       { path: "shop/:slug", element: <ShopProductPage /> },
       { path: "subscription", element: <SubscriptionPage /> },
       { path: "brewguides", element: <BrewPage /> },

@@ -8,9 +8,37 @@ export interface ProductResponse {
   inStock: boolean;
   category: ProductCategory;
   imageUrl: string;
+  flavorProfile: FlavorProfile[];
+  origin: CoffeeOrigin;
+  roast: ProductRoast;
   createdAt: string;
   updatedAt: string;
 }
 
+export type ProductCategory =
+  | "whole-bean"
+  | "ground"
+  | "cold-brew"
+  | "espresso";
 
-export type ProductCategory = "whole-bean" | "ground" | "cold-brew";
+export type FlavorProfile =
+  | "citrus"
+  | "chocolate"
+  | "caramel"
+  | "floral"
+  | "nutty"
+  | "smoky"
+  | "fruity"
+  | "spicy";
+
+export type CoffeeOrigin =
+  | "ethiopia"
+  | "colombia"
+  | "brazil"
+  | "costa-rica"
+  | "rwanda";
+
+  export type ProductRoast =
+  | "light"
+  | "medium"
+  | "dark"

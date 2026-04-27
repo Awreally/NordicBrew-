@@ -3,10 +3,10 @@
 }
 
 .imageWrapper {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   background-color: var(--surface-container-lowest);
   border-radius: 0.75rem;
-  padding: 2rem;
+  padding: 1.5rem;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -53,7 +53,7 @@
 }
 
 .productContent {
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 }
 
 .productContent > * + * {
@@ -131,4 +131,10 @@
 
 .favoriteButton:hover {
   background-color: var(--surface-container);
+}
+
+.flavorTags {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }

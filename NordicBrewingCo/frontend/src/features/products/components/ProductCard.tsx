@@ -16,8 +16,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         />
 
         <div className={styles.badgeWrapper}>
-          <span className={styles.productBadge}>Dark Roast</span>
+          <span className={styles.productBadge}>{product.roast}</span>
         </div>
+      </div>
+      <div className={styles.flavorTags}>
+        {product.flavorProfile.map((flavor) => (
+            <span key={flavor} className={styles.productBadge}>{flavor}</span>
+
+        ))}
       </div>
       <div className={styles.productContent}>
         <div className={styles.productHeader}>

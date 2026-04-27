@@ -4,7 +4,7 @@ export type ProductCategory =
   | "cold-brew"
   | "espresso";
 
-export type FlavorProfile =
+export type FlavorProfiles =
   | "citrus"
   | "chocolate"
   | "caramel"
@@ -21,6 +21,11 @@ export type CoffeeOrigin =
   | "costa-rica"
   | "rwanda";
 
+  export type ProductRoast =
+  | "light"
+  | "medium"
+  | "dark"
+
 export interface ProductResponse {
   id: string;
   slug: string;
@@ -31,8 +36,9 @@ export interface ProductResponse {
   inStock: boolean;
   category: ProductCategory;
   imageUrl: string;
-  flavorProfile: FlavorProfile[];
+  flavorProfile: FlavorProfiles[];
   origin: CoffeeOrigin;
+  roast: ProductRoast;
   createdAt: string;
   updatedAt: string;
 }
@@ -46,8 +52,9 @@ export interface CreateProductInput {
   inStock?: boolean;
   category: ProductCategory;
   imageUrl: string;
-  flavorProfiles: FlavorProfile[];
+  flavorProfiles: FlavorProfiles[];
   origin: CoffeeOrigin;
+  roast: ProductRoast;
 }
 
 export interface ProductParams {
