@@ -3,11 +3,12 @@ import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
   product: ProductResponse;
+  variant?: "default" | "featured";
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, variant = "default" }: ProductCardProps) => {
   return (
-    <article className={styles.productCard}>
+    <article className={`${styles.productCard} ${variant === "featured" ? styles.featured : ""}`}>
       <div className={styles.imageWrapper}>
         <img
           className={styles.productImage}
@@ -27,7 +28,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </div>
       <div className={styles.productContent}>
         <div className={styles.productHeader}>
-          <h2 className={styles.productTitle}>{product.name}</h2>
+          <h3 className={styles.productTitle}>{product.name}</h3>
           <span className={styles.productPrice}>{product.price}:-</span>
         </div>
 

@@ -6,6 +6,7 @@ import {
   ProductResponse,
   ProductRoast,
   UpdateProductInput,
+
 } from "./product.types";
 import { ProductModel } from "./product.model";
 import { toProductResponse, toProductResponseList } from "./product.mapper";
@@ -16,12 +17,14 @@ export const getAllProducts = async (filters: {
   roast?: ProductRoast;
   origin?: CoffeeOrigin;
   flavorProfile?: FlavorProfiles;
+  featured?: boolean;
 }): Promise<ProductResponse[]> => {
   const query: Record<string, unknown> = {};
   if (filters.category) query.category = filters.category;
   if (filters.roast) query.roast = filters.roast;
   if (filters.origin) query.origin = filters.origin;
   if (filters.flavorProfile) query.flavorProfiles = filters.flavorProfile;
+  if (filters.featured) query.featured = filters.featured;
   const products = await ProductModel.find(query);
   return toProductResponseList(products);
 };

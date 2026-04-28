@@ -9,6 +9,7 @@ export const toProductResponse = (product: IProduct): ProductResponse => ({
   price: product.price,
   compareAtPrice: product.compareAtPrice ?? undefined,
   inStock: product.inStock,
+  featured: product.featured,
   category: product.category,
   imageUrl: product.imageUrl,
   flavorProfile: product.flavorProfiles,

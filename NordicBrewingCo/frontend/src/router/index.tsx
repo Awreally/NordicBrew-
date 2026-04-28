@@ -24,7 +24,10 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
     hydrateFallbackElement: <RouteLoading />,
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, 
+        element: <HomePage />, 
+        loader: () => fetchProducts({ featured: true }),
+      },
       {
         path: "shop",
         element: <ShopPage />,
@@ -39,7 +42,21 @@ export const router = createBrowserRouter([
           const flavorProfile =
             (url.searchParams.get("flavorProfile") as FlavorProfile) ??
             undefined;
-          return fetchProducts({ category, roast, origin, flavorProfile });
+          const featuredParam = url.searchParams.get("featured");
+          const featured =
+            featuredParam === "true"
+              ? true
+              : featuredParam === "false"
+                ? false
+                : undefined;
+
+          return fetchProducts({
+            category,
+            roast,
+            origin,
+            flavorProfile,
+            featured,
+          });
         },
       },
       { path: "shop/:slug", element: <ShopProductPage /> },

@@ -34,6 +34,7 @@ export interface ProductResponse {
   price: number;
   compareAtPrice?: number;
   inStock: boolean;
+  featured: boolean;
   category: ProductCategory;
   imageUrl: string;
   flavorProfile: FlavorProfiles[];
@@ -50,6 +51,7 @@ export interface CreateProductInput {
   price: number;
   compareAtPrice?: number;
   inStock?: boolean;
+  featured?: boolean;
   category: ProductCategory;
   imageUrl: string;
   flavorProfiles: FlavorProfiles[];

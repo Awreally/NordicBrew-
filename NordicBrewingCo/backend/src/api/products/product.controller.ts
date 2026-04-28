@@ -22,12 +22,14 @@ export const getProducts = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const { category, roast, origin, flavorProfile } = req.query;
-    const products = await getAllProducts({ 
+    const { category, roast, origin, flavorProfile, featured } = req.query;
+    const products = await getAllProducts({
       category: category as ProductCategory,
       roast: roast as ProductRoast,
       origin: origin as CoffeeOrigin,
       flavorProfile: flavorProfile as FlavorProfiles,
+      featured:
+        featured === "true" ? true : featured === "false" ? false : undefined,
     });
     res.status(200).json(products);
   } catch (err) {

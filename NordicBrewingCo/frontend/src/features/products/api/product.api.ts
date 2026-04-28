@@ -6,6 +6,7 @@ export const fetchProducts = async (filters?: {
   roast?: ProductRoast;
   origin?: CoffeeOrigin;
   flavorProfile?: FlavorProfile;
+  featured?: boolean;
 }): Promise<ProductResponse[]> => {
   const params = new URLSearchParams();
 
@@ -13,6 +14,7 @@ export const fetchProducts = async (filters?: {
   if (filters?.roast) params.set("roast", filters.roast);
   if (filters?.origin) params.set("origin", filters.origin);
   if (filters?.flavorProfile) params.set("flavorProfile", filters.flavorProfile);
+  if (filters?.featured !== undefined) params.set("featured", String(filters.featured));
 
   const query = params.toString();
   return apiFetch<ProductResponse[]>(
