@@ -1,3 +1,5 @@
+import { DashHeroSection } from "../features/dashboard/components/DashHeroSection";
+
 export const HomePage = () => {
-  return <div>Home</div>;
+  return <DashHeroSection />;
 };
