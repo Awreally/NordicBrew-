@@ -76,6 +76,7 @@
   /* Typography */
   --font-heading: "Manrope", sans-serif;
   --font-body: "Newsreader", serif;
+  --font-label: "Manrope", sans-serif;
   
   /* Spacing & Radii */
   --radius-sm: 4px;

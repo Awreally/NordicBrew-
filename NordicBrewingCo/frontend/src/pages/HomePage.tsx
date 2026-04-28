@@ -1,7 +1,9 @@
+import { useLoaderData } from "react-router-dom";
+import type { ProductResponse } from "../features/products/types/product.types";
 import { DashHeroSection } from "../features/dashboard/components/DashHeroSection";
 import { FeatureBlends } from "../features/dashboard/components/FeatureBlends";
-import type { ProductResponse } from "../features/products/types/product.types";
-import { useLoaderData } from "react-router-dom";
+import { ProcessSection } from "../features/dashboard/components/ProcessSection";
+import { SubscriptionSection } from "../features/dashboard/components/SubscriptionSection";
 
 export const HomePage = () => {
   const products = useLoaderData() as ProductResponse[]; 
@@ -10,6 +12,8 @@ export const HomePage = () => {
     <>
     <DashHeroSection />
     <FeatureBlends products={products} />
+    <ProcessSection />
+    <SubscriptionSection />
     </>
   );
 };

@@ -4,7 +4,7 @@
 
 .imageWrapper {
   aspect-ratio: 1 / 1;
-  background-color: var(--surface-container-lowest);
+  background-color: white;
   border-radius: 0.75rem;
   padding: 1.5rem;
   position: relative;
@@ -12,19 +12,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    box-shadow 0.35s ease,
-    transform 0.35s ease;
-}
-
-.imageWrapper:hover {
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.18);
-  transform: translateY(-4px);
 }
 
 .productImage {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
   display: block;
   transition: transform 0.6s ease;
@@ -36,20 +28,36 @@
 
 .badgeWrapper {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 2rem;
+  right: 2rem;
 }
 
 .productBadge {
   display: inline-block;
-  background-color: var(--primary);
-  color: var(--on-primary);
+  background-color: var(--nordic-midnight);
+  color: var(--surface-container-lowest);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   font-family: var(--font-label);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.lightRoastBadge {
+  background-color: var(--secondary-container);
+  color: var(--color-font-primary);
+}
+
+.mediumRoastBadge {
+  background-color: var(--color-secondary);
+  color: var(--color-neutral);
+}
+
+.darkRoastBadge {
+  background-color: var(--primary-green);
+  color: var(--color-neutral);
 }
 
 .productContent {
@@ -69,14 +77,14 @@
 
 .productTitle {
   margin: 0;
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   font-size: 1.875rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary);
 }
 
 .productPrice {
-  font-family: var(--font-headline);
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--secondary);
@@ -103,7 +111,7 @@
   color: var(--on-primary);
   padding: 0.75rem 1rem;
   border-radius: 0.375rem;
-  font-family: var(--font-label);
+  font-family: var(--font-heading);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.75rem;
@@ -137,4 +145,125 @@
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
+}
+
+.featured .imageWrapper {
+  aspect-ratio: 4 / 5;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured .imageWrapper:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.featured .imageWrapper::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem;
+  background-color: var(--surface-container);
+  z-index: 0;
+}
+
+.featured .productImage {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.featured .imageWrapper:hover .productImage {
+  transform: scale(1.1);
+}
+
+.featured .productBadge {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.featured .lightRoastBadge {
+  background-color: var(--secondary-container);
+  color: var(--color-font-primary);
+}
+
+.featured .mediumRoastBadge {
+  background-color: var(--color-secondary);
+  color: var(--color-neutral);
+}
+
+.featured .darkRoastBadge {
+  background-color: var(--primary-green);
+  color: var(--color-neutral);
+}
+
+.featured .flavorTags {
+  margin-top: 1rem;
+}
+
+.featured .productContent {
+  margin-top: 1.25rem;
+}
+
+.featured .productHeader {
+  align-items: flex-start;
+}
+
+.featured .productTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.featured .productPrice {
+  color: var(--primary);
+  font-size: 1.25rem;
+}
+
+.featured .productDescription {
+  font-size: 1rem;
+}
+
+.featured .action {
+  display: none;
+}
+
+.featured .badgeWrapper {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: auto;
+}
+
+.cartIconButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--surface) 90%, transparent);
+  color: var(--primary);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.featured .imageWrapper:hover .cartIconButton {
+  opacity: 1;
+}
+
+.cartIconButton:hover {
+  transform: scale(1.05);
 }
