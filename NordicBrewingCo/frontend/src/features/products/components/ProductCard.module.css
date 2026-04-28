@@ -2,6 +2,16 @@
   width: 100%;
 }
 
+.productLink {
+  display: block;
+  margin-top: 1.25rem;
+  text-decoration: none; 
+}
+
+.productLink > * + * {
+  margin-top: 0.5rem;
+}
+
 .imageWrapper {
   aspect-ratio: 1 / 1;
   background-color: white;
@@ -58,14 +68,6 @@
 .darkRoastBadge {
   background-color: var(--primary-green);
   color: var(--color-neutral);
-}
-
-.productContent {
-  margin-top: 1.25rem;
-}
-
-.productContent > * + * {
-  margin-top: 0.5rem;
 }
 
 .productHeader {
@@ -145,6 +147,14 @@
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
+}
+
+.productCard.featured {
+  position: relative;
+}
+
+.productCard.featured:hover .cartIconButton {
+  opacity: 1;
 }
 
 .featured .imageWrapper {

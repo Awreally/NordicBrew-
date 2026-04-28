@@ -21,3 +21,9 @@ export const fetchProducts = async (filters?: {
     query ? `/products?${query}` : "/products",
   );
 };
+
+export const fetchProductsBySlug = async (
+  slug: string,
+): Promise<ProductResponse> => {
+  return apiFetch<ProductResponse>(`/products/${slug}`);
+};

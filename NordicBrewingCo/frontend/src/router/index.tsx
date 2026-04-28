@@ -9,7 +9,10 @@ import { BrewPage } from "../pages/BrewPage";
 import { StoryPage } from "../pages/StoryPage";
 import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
-import { fetchProducts } from "../features/products/api/product.api";
+import {
+  fetchProducts,
+  fetchProductsBySlug,
+} from "../features/products/api/product.api";
 import type {
   ProductCategory,
   ProductRoast,
@@ -24,8 +27,9 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
     hydrateFallbackElement: <RouteLoading />,
     children: [
-      { index: true, 
-        element: <HomePage />, 
+      {
+        index: true,
+        element: <HomePage />,
         loader: () => fetchProducts({ featured: true }),
       },
       {
@@ -59,7 +63,16 @@ export const router = createBrowserRouter([
           });
         },
       },
-      { path: "shop/:slug", element: <ShopProductPage /> },
+      {
+        path: "shop/:slug",
+        element: <ShopProductPage />,
+        loader: ({ params }) => {
+          if (!params.slug) {
+            throw new Error("Missing product slug");
+          }
+          return fetchProductsBySlug(params.slug);
+        },
+      },
       { path: "subscription", element: <SubscriptionPage /> },
       { path: "brewguides", element: <BrewPage /> },
       { path: "ourstory", element: <StoryPage /> },

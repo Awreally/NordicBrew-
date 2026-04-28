@@ -1,3 +1,13 @@
+import { useLoaderData } from "react-router-dom";
+import type { ProductResponse } from "../features/products/types/product.types";
+import { ProductDetail } from "../features/products/components/ProductDetail";
+
 export const ShopProductPage = () => {
-  return <div>Product</div>;
+  const product = useLoaderData() as ProductResponse;
+  
+  return (
+    <>
+    <ProductDetail product={product} />
+    </>
+  )
 };
