@@ -1,0 +1,217 @@
+.pdpWrapper {
+  background-color: #fef9f2;
+  color: #012d19;
+  min-height: 100vh;
+}
+
+.pdpContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+.productGallery {
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+.tiltedBackground {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  background-color: #eee8df;
+  border-radius: 0.75rem;
+  transform: rotate(-2deg) scale(1.04);
+  z-index: 0;
+}
+
+.productMainImage {
+  position: relative;
+  background-color: #fffdfa;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  z-index: 1;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.productDetails {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.productMetaLabel {
+  font-family: "Manrope", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: #7c5730;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.productTitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: #1b432e;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.productSubtitle {
+  font-style: italic;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.productPriceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.productPrice {
+  font-size: 2.25rem;
+}
+
+.productTags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.productBadge {
+  background-color: #f2ede6;
+  padding: 0.25rem 0.75rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 999px;
+  color: #1b432e;
+}
+
+.sensoryProfile {
+  border-top: 1px solid rgba(27, 67, 46, 0.1);
+  border-bottom: 1px solid rgba(27, 67, 46, 0.1);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.profileTitle {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(27, 67, 46, 0.6);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.flavorList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.flavorItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  border: 1px solid rgba(27, 67, 46, 0.05);
+}
+
+.flavorIcon {
+  font-size: 1.25rem;
+}
+
+.flavorName {
+  font-size: 1.125rem;
+  color: #1b432e;
+}
+
+.purchaseActions {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.primaryButton {
+  background-color: var(--primary-green);
+  color: white;
+  padding: 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: var(--primary-green);
+  border: 1px solid var(--primary-green);
+  padding: 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: #012d19;
+}
+
+.secondaryButton {
+  background-color: transparent;
+  border: 1px solid #1b432e;
+  color: #1b432e;
+}
+
+.secondaryButton:hover {
+  background-color: #f2ede6;
+}
+
+@media (min-width: 768px) {
+  .pdpContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .productGallery {
+    position: static;
+  }
+
+  .productTitle {
+    font-size: 3rem;
+  }
+
+  .productPriceRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

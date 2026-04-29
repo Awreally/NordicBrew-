@@ -16,16 +16,16 @@
   --color-bg: #fef9f2;
   --color-bg-section: #f2ede6;
 
-   /* Colors */
-  --primary-green: #1B432E;
-  --nordic-midnight: #012D19;
-  --hearth-cream: #FEF9F2;
-  --soft-stone: #F2EDE6;
-  --roasted-earth: #7C5730;
-  --sun-drenched-wheat: #F9DCC4;
-  --amber-glow: #E29578;
+  /* Colors */
+  --primary-green: #1b432e;
+  --nordic-midnight: #012d19;
+  --hearth-cream: #fef9f2;
+  --soft-stone: #f2ede6;
+  --roasted-earth: #7c5730;
+  --sun-drenched-wheat: #f9dcc4;
+  --amber-glow: #e29578;
   --nav-bg: rgba(254, 249, 242, 0.6);
-   --surface-container-lowest: #ffffff;
+  --surface-container-lowest: #ffffff;
   --error-container: #ffdad6;
   --on-background: #1d1c18;
   --secondary: #7c5730;
@@ -77,9 +77,10 @@
   --font-heading: "Manrope", sans-serif;
   --font-body: "Newsreader", serif;
   --font-label: "Manrope", sans-serif;
-  
+
   /* Spacing & Radii */
   --radius-sm: 4px;
   --radius-md: 8px;
   --spacing-unit: 8px;
+  --container-max: 1440px;
 }
