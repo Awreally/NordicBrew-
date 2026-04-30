@@ -11,5 +11,13 @@
     "install:all": "npm install",
     "dev": "npm run dev --workspace=frontend & npm run dev:watch --workspace=backend",
     "build": "npm run build --workspace=backend && npm run build --workspace=frontend"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10"
   }
 }
