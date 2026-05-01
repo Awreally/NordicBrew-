@@ -1,4 +1,14 @@
-type Role = "buyer" | "admin";
+export type Role = "buyer" | "admin";
+
+export interface AuthUser {
+  userId: string;
+  role: Role;
+}
+
+export interface JWTPayload extends AuthUser {
+  iat?: number;
+  exp?: number;
+}
 
 export interface AuthResponse {
   token: string;
@@ -7,12 +17,6 @@ export interface AuthResponse {
 
 export interface UserParam {
     userId: string;
-}
-export interface JWTPayload {
-  userId: string;
-  role: Role;
-  iat?: number;
-  exp?: number;
 }
 
 export type IUser = {

@@ -5,8 +5,7 @@ import {
   updateUser,
   updateUserPassword,
 } from "./auth.service";
-import { LoginInput, RegisterInput, UpdatePasswordInput, UpdateUserInput, UserParam } from "./auth.types";
-import { SuccessResponse, ErrorResponse } from "../../types/common.types";
+import { LoginInput, RegisterInput, UpdatePasswordInput, UpdateUserInput } from "./auth.types";
 
 export const registerUserHandler = async (
   req: Request<{}, {}, RegisterInput>,
@@ -41,12 +40,12 @@ export const loginUserHandler = async (
 };
 
 export const updateUserHandler = async (
-  req: Request<UserParam, {}, UpdateUserInput>,
+  req: Request<{}, {}, UpdateUserInput>,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-        const updatedUser = await updateUser(req.params.userId, req.body)
+        const updatedUser = await updateUser(req.user!.userId, req.body)
 
      res.status(200).json({
         success: true,
@@ -58,12 +57,12 @@ export const updateUserHandler = async (
 };
 
 export const updateUserPasswordHandler = async (
-  req: Request<UserParam, {}, UpdatePasswordInput>,
+  req: Request<{}, {}, UpdatePasswordInput>,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const updatedPassword = await updateUserPassword(req.params.userId, req.body)
+    const updatedPassword = await updateUserPassword(req.user!.userId, req.body)
      res.status(200).json({
         success: true,
         data: null
