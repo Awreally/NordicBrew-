@@ -1,13 +1,11 @@
 import { toUserResponse, toUserResponseList } from "./auth.mapper";
-import {
-  RegisterInput,
-  LoginInput,
-  UpdateUserInput,
+import { JWTPayload, AuthResponse, UserResponse } from "./auth.types";
+import type {
   UpdatePasswordInput,
-  JWTPayload,
-  AuthResponse,
-  UserResponse,
-} from "./auth.types";
+  UpdateUserInput,
+  LoginInput,
+  RegisterInput,
+} from "./auth.validation";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { UserModel } from "./auth.model";

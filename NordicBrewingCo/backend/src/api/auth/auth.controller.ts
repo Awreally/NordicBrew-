@@ -5,7 +5,7 @@ import {
   updateUser,
   updateUserPassword,
 } from "./auth.service";
-import { LoginInput, RegisterInput, UpdatePasswordInput, UpdateUserInput } from "./auth.types";
+import { LoginInput, RegisterInput, UpdatePasswordInput, UpdateUserInput } from "./auth.validation";
 
 export const registerUserHandler = async (
   req: Request<{}, {}, RegisterInput>,

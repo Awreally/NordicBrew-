@@ -1,5 +1,12 @@
 import { Router } from "express";
+import { validateBody } from "../../middleware/validateBody";
 import { verifyToken } from "../../middleware/verifyToken";
+import {
+  RegisterSchema,
+  LoginSchema,
+  UpdateUserSchema,
+  UpdatePasswordSchema,
+} from "./auth.validation";
 import {
   registerUserHandler,
   loginUserHandler,
@@ -9,9 +16,19 @@ import {
 
 const authRouter = Router();
 
-authRouter.post("/register", registerUserHandler);
-authRouter.post("/login", loginUserHandler);
-authRouter.patch("/update", verifyToken, updateUserHandler);
-authRouter.patch("/password", verifyToken, updateUserPasswordHandler);
+authRouter.post("/register", validateBody(RegisterSchema), registerUserHandler);
+authRouter.post("/login", validateBody(LoginSchema), loginUserHandler);
+authRouter.patch(
+  "/update",
+  verifyToken,
+  validateBody(UpdateUserSchema),
+  updateUserHandler,
+);
+authRouter.patch(
+  "/password",
+  verifyToken,
+  validateBody(UpdatePasswordSchema),
+  updateUserPasswordHandler,
+);
 
 export default authRouter;
