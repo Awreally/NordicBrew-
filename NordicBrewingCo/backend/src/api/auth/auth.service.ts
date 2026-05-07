@@ -110,6 +110,14 @@ export const updateUserPassword = async (
     throw new AppError(401, "Current password is wrong", "INVALID_PASSWORD");
   }
 
+  if (input.currentPassword === input.newPassword) {
+    throw new AppError(
+      400,
+      "New password cannot match old password",
+      "PASSWORD_REUSED",
+    );
+  }
+
   user.passwordHash = await bcrypt.hash(input.newPassword, 10);
   await user.save();
 };
