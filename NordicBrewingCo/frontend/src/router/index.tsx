@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import { RouteErrorBoundary, RouteLoading } from "./RouteFeedback";
 import { RootLayout } from "../components/layout/RootLayout";
 import { HomePage } from "../pages/HomePage";
@@ -9,6 +9,7 @@ import { BrewPage } from "../pages/BrewPage";
 import { StoryPage } from "../pages/StoryPage";
 import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
+import { RegisterPage } from "../pages/RegisterPage";
 import {
   fetchProducts,
   fetchProductsBySlug,
@@ -19,6 +20,10 @@ import type {
   CoffeeOrigin,
   FlavorProfile,
 } from "../features/products/types/product.types";
+import {
+  fetchLoginUser,
+  fetchRegisterUser,
+} from "../features/Auth/api/auth.api";
 
 export const router = createBrowserRouter([
   {
@@ -77,7 +82,38 @@ export const router = createBrowserRouter([
       { path: "brewguides", element: <BrewPage /> },
       { path: "ourstory", element: <StoryPage /> },
       { path: "cart", element: <CartPage /> },
-      { path: "login", element: <LoginPage /> },
+      {
+        path: "login",
+        element: <LoginPage />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const response = await fetchLoginUser({
+            email: String(formData.get("email")),
+            password: String(formData.get("password")),
+          });
+
+          localStorage.setItem("token", response.data.token);
+          return redirect("/");
+        },
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+
+          const response = await fetchRegisterUser({
+            firstName: String(formData.get("firstName")),
+            lastName: String(formData.get("lastName")),
+            email: String(formData.get("email")),
+            password: String(formData.get("password")),
+          });
+
+          localStorage.setItem("token", response.data.token);
+
+          return redirect("/");
+        },
+      },
     ],
   },
 ]);
