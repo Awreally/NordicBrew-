@@ -1,3 +1,4 @@
+import type {} from "./types/express";
 import app from "./app";
 import { connectToDatabase } from "./config/database";
 import { env } from "./config/env";

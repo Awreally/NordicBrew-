@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import jwt, { JwtPayload, TokenExpiredError } from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import type { AuthUser } from "../api/auth/auth.types";
 import { env } from "../config/env";
 
 interface AuthTokenPayload extends JwtPayload, AuthUser {}
 
-export const verifyToken = (
+export const resolveCartOwner = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -28,8 +28,6 @@ export const verifyToken = (
   try {
     const payload = jwt.verify(token, env.JWT_SECRET) as AuthTokenPayload;
     const userOwner = { userId: payload.userId } as const;
-
-    await mergeCartOwners({ sessionId: req.sessionID }, userOwner);
 
     res.locals.cartOwner = userOwner;
 

@@ -1,30 +1,31 @@
-export type ProductCategory =
-  | "whole-bean"
-  | "ground"
-  | "cold-brew"
-  | "espresso";
+import { z } from "zod";
 
-export type FlavorProfiles =
-  | "citrus"
-  | "chocolate"
-  | "caramel"
-  | "floral"
-  | "nutty"
-  | "smoky"
-  | "fruity"
-  | "spicy";
+export const CategoryEnum = z.enum(["whole-bean", "ground", "cold-brew", "espresso"]);
+export type ProductCategory = z.infer<typeof CategoryEnum>;
 
-export type CoffeeOrigin =
-  | "ethiopia"
-  | "colombia"
-  | "brazil"
-  | "costa-rica"
-  | "rwanda";
+export const RoastEnum = z.enum(["light", "medium", "dark"]);
+export type ProductRoast = z.infer<typeof RoastEnum>;
 
-  export type ProductRoast =
-  | "light"
-  | "medium"
-  | "dark"
+export const OriginEnum = z.enum([
+  "ethiopia",
+  "colombia",
+  "brazil",
+  "costa-rica",
+  "rwanda",
+]);
+export type CoffeeOrigin = z.infer<typeof OriginEnum>;
+
+export const FlavorProfileEnum = z.enum([
+  "citrus",
+  "chocolate",
+  "caramel",
+  "floral",
+  "nutty",
+  "smoky",
+  "fruity",
+  "spicy",
+]);
+export type FlavorProfiles = z.infer<typeof FlavorProfileEnum>;
 
 export interface ProductResponse {
   id: string;
@@ -43,24 +44,3 @@ export interface ProductResponse {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface CreateProductInput {
-  slug: string;
-  name: string;
-  description: string;
-  price: number;
-  compareAtPrice?: number;
-  inStock?: boolean;
-  featured?: boolean;
-  category: ProductCategory;
-  imageUrl: string;
-  flavorProfiles: FlavorProfiles[];
-  origin: CoffeeOrigin;
-  roast: ProductRoast;
-}
-
-export interface ProductParams {
-  slug: string;
-}
-
-export type UpdateProductInput = Partial<Omit<CreateProductInput, "slug">>;

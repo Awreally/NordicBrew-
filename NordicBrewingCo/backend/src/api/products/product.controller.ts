@@ -8,13 +8,15 @@ import {
 import { Request, Response, NextFunction } from "express";
 import {
   CoffeeOrigin,
-  CreateProductInput,
   FlavorProfiles,
   ProductCategory,
-  ProductParams,
   ProductRoast,
-  UpdateProductInput,
 } from "./product.types";
+import type {
+  ProductParams,
+  CreateProductInput,
+  UpdateProductInput,
+} from "./product.validation";
 
 export const getProducts = async (
   req: Request,

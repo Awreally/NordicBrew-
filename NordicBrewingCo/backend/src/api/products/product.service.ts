@@ -1,13 +1,11 @@
 import {
   CoffeeOrigin,
-  CreateProductInput,
   FlavorProfiles,
   ProductCategory,
   ProductResponse,
   ProductRoast,
-  UpdateProductInput,
-
 } from "./product.types";
+import type { CreateProductInput, UpdateProductInput } from "./product.validation";
 import { ProductModel } from "./product.model";
 import { toProductResponse, toProductResponseList } from "./product.mapper";
 import { AppError } from "../../errors/AppError";
@@ -18,6 +16,7 @@ export const getAllProducts = async (filters: {
   origin?: CoffeeOrigin;
   flavorProfile?: FlavorProfiles;
   featured?: boolean;
+  page?: number;
 }): Promise<ProductResponse[]> => {
   const query: Record<string, unknown> = {};
   if (filters.category) query.category = filters.category;
@@ -25,7 +24,13 @@ export const getAllProducts = async (filters: {
   if (filters.origin) query.origin = filters.origin;
   if (filters.flavorProfile) query.flavorProfiles = filters.flavorProfile;
   if (filters.featured) query.featured = filters.featured;
-  const products = await ProductModel.find(query);
+  const page = filters.page ?? 1;
+  const limit = 6;
+  const skip = (page - 1) * limit;
+  const products = await ProductModel.find(query)
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
   return toProductResponseList(products);
 };
 

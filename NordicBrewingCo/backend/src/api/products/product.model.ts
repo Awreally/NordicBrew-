@@ -5,6 +5,7 @@ import {
   CoffeeOrigin,
   ProductRoast,
 } from "./product.types";
+import { CategoryEnum, RoastEnum, OriginEnum, FlavorProfileEnum } from "./product.types";
 
 export type IProduct = {
   _id: { toString(): string };
@@ -64,7 +65,7 @@ const productSchema = new Schema(
     category: {
       type: String,
       required: true,
-      enum: ["whole-bean", "ground", "cold-brew", "espresso"],
+      enum: CategoryEnum.options,
     },
     imageUrl: {
       type: String,
@@ -74,33 +75,18 @@ const productSchema = new Schema(
     flavorProfiles: {
       type: [String],
       required: true,
-      enum: [
-        "citrus",
-        "chocolate",
-        "caramel",
-        "floral",
-        "nutty",
-        "smoky",
-        "fruity",
-        "spicy",
-      ],
+      enum: FlavorProfileEnum.options,
       default: [],
     },
     origin: {
       type: String,
       required: true,
-      enum: [
-        "ethiopia",
-        "colombia",
-        "brazil",
-        "costa-rica",
-        "rwanda",
-      ] satisfies CoffeeOrigin[],
+      enum: OriginEnum.options,
     },
     roast: {
       type: String,
       required: true,
-      enum: ["light", "medium", "dark"],
+      enum: RoastEnum.options,
     },
   },
   {
