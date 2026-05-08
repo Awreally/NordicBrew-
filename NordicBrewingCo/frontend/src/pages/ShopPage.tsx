@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import type { ProductResponse } from "../features/products/types/product.types";
 import { ProductList } from "../features/products/components/ProductList";
 import { HeroSection } from "../features/products/components/HeroSection";
-import { FilterSidebar } from "../features/products/components/FilterSidebar";
+import { FilterSidebar } from "../features/products/components/Filterbar";
 import styles from "./ShopPage.module.css";
 
 export const ShopPage = () => {
@@ -11,11 +11,9 @@ export const ShopPage = () => {
   return (
     <>
       <HeroSection />
+      <FilterSidebar count={products.length} />
       <main className={styles.shopSection}>
-        <div className={styles.shopLayout}>
-          <FilterSidebar />
-          <ProductList products={products} />
-        </div>
+        <ProductList products={products} />
       </main>
     </>
   );

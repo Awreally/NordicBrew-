@@ -1,0 +1,28 @@
+.tabs {
+  display: flex;
+  background: var(--auth-bg-dark);
+  border-radius: 6px;
+  padding: 4px;
+  margin-bottom: 32px;
+}
+
+.btn {
+  flex: 1;
+  padding: 9px 12px;
+  background: transparent;
+  color: var(--auth-mid);
+  border-radius: 4px;
+  border: none;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnActive {
+  background: #fff;
+  color: var(--auth-text);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}

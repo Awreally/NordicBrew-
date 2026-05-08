@@ -1,26 +1,5 @@
 .shopSection {
-  width: 100%;
-  padding: 0 2rem 8rem;
-  background-color: var(--background);
-}
-
-.shopLayout {
-  max-width: 1536px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  margin-top: 2rem;
-  gap: 4rem;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .shopSection {
-    padding: 0 1.5rem 4rem;
-  }
-
-  .shopLayout {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
+  background: var(--nbc-bg);
+  min-height: 50vh;
+  padding-top: 1rem;
 }
