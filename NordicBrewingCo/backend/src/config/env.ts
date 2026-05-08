@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import type { SignOptions } from "jsonwebtoken";
+import { z } from "zod";
 
 dotenv.config();
 
@@ -33,5 +34,13 @@ export const env = {
   NODE_ENV: process.env.NODE_ENV?.trim() || "development",
   FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:5173",
   JWT_SECRET: getRequiredEnv("JWT_SECRET"),
-  JWT_EXPIRES_IN: (process.env.JWT_EXPIRES_IN?.trim() || "7d") as SignOptions["expiresIn"],
+  JWT_EXPIRES_IN: (process.env.JWT_EXPIRES_IN?.trim() ||
+    "7d") as SignOptions["expiresIn"],
 };
+
+const envSchema = z.object({
+  PRODUCTS_DEFAULT_PAGE_SIZE: z.coerce.number().int().min(1).default(10),
+  PRODUCTS_MAX_PAGE_SIZE: z.coerce.number().int().min(1).default(100),
+});
+
+export const schemaEnv = envSchema.parse(process.env);

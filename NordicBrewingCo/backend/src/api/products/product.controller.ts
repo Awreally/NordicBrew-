@@ -6,16 +6,11 @@ import {
   deleteProduct,
 } from "./product.service";
 import { Request, Response, NextFunction } from "express";
-import {
-  CoffeeOrigin,
-  FlavorProfiles,
-  ProductCategory,
-  ProductRoast,
-} from "./product.types";
 import type {
   ProductParams,
   CreateProductInput,
   UpdateProductInput,
+  GetProductsQuery,
 } from "./product.validation";
 
 export const getProducts = async (
@@ -24,15 +19,9 @@ export const getProducts = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const { category, roast, origin, flavorProfile, featured } = req.query;
-    const products = await getAllProducts({
-      category: category as ProductCategory,
-      roast: roast as ProductRoast,
-      origin: origin as CoffeeOrigin,
-      flavorProfile: flavorProfile as FlavorProfiles,
-      featured:
-        featured === "true" ? true : featured === "false" ? false : undefined,
-    });
+    const products = await getAllProducts(
+      req.query as unknown as GetProductsQuery,
+    );
     res.status(200).json(products);
   } catch (err) {
     next(err);

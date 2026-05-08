@@ -1,36 +1,29 @@
-import {
-  CoffeeOrigin,
-  FlavorProfiles,
-  ProductCategory,
-  ProductResponse,
-  ProductRoast,
-} from "./product.types";
-import type { CreateProductInput, UpdateProductInput } from "./product.validation";
+import { ProductResponse } from "./product.types";
+import type {
+  CreateProductInput,
+  UpdateProductInput,
+  GetProductsQuery,
+} from "./product.validation";
 import { ProductModel } from "./product.model";
 import { toProductResponse, toProductResponseList } from "./product.mapper";
 import { AppError } from "../../errors/AppError";
 
-export const getAllProducts = async (filters: {
-  category?: ProductCategory;
-  roast?: ProductRoast;
-  origin?: CoffeeOrigin;
-  flavorProfile?: FlavorProfiles;
-  featured?: boolean;
-  page?: number;
-}): Promise<ProductResponse[]> => {
+export const getAllProducts = async (
+  filters: GetProductsQuery,
+): Promise<ProductResponse[]> => {
   const query: Record<string, unknown> = {};
   if (filters.category) query.category = filters.category;
   if (filters.roast) query.roast = filters.roast;
   if (filters.origin) query.origin = filters.origin;
   if (filters.flavorProfile) query.flavorProfiles = filters.flavorProfile;
-  if (filters.featured) query.featured = filters.featured;
-  const page = filters.page ?? 1;
-  const limit = 6;
-  const skip = (page - 1) * limit;
+  if (filters.featured !== undefined) query.featured = filters.featured;
+
+  const skip = (filters.page - 1) * filters.limit;
+
   const products = await ProductModel.find(query)
     .sort({ createdAt: -1 })
     .skip(skip)
-    .limit(limit);
+    .limit(filters.limit);
   return toProductResponseList(products);
 };
 

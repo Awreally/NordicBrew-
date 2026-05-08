@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { schemaEnv } from "../../config/env";
 import {
   CategoryEnum,
   RoastEnum,
@@ -17,7 +18,9 @@ const SlugSchema = z
     "Product slug can only contain lowercase letters, numbers, and hyphens",
   );
 
-const FeaturedQuerySchema = z.literal("true").transform(() => true);
+const FeaturedQuerySchema = z
+  .enum(["true", "false"])
+  .transform((value) => value === "true");
 
 export const GetProductsSchema = z.object({
   category: CategoryEnum.optional(),
@@ -30,8 +33,15 @@ export const GetProductsSchema = z.object({
     .int("Page must be a whole number")
     .min(1, "Page must be at least 1")
     .default(1),
-  limit: z.coerce.number().int().min(1).max(100).default(10),
+  limit: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(schemaEnv.PRODUCTS_MAX_PAGE_SIZE)
+    .default(schemaEnv.PRODUCTS_DEFAULT_PAGE_SIZE),
 });
+
+export type GetProductsQuery = z.infer<typeof GetProductsSchema>;
 
 const ProductBaseSchema = z.object({
   slug: SlugSchema,
