@@ -1,69 +1,76 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import type { ProductResponse, ProductRoast } from "../types/product.types";
 import styles from "./ProductCard.module.css";
-import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: ProductResponse;
-  variant?: "default" | "featured";
+  compact?: boolean;
 }
 
-const roastBadgeClasses: Record<ProductRoast, string> = {
-  light: styles.lightRoastBadge,
-  medium: styles.mediumRoastBadge,
-  dark: styles.darkRoastBadge,
+const roastDotClass: Record<ProductRoast, string> = {
+  light: styles.dotLight,
+  medium: styles.dotMedium,
+  dark: styles.dotDark,
 };
 
-export const ProductCard = ({
-  product,
-  variant = "default",
-}: ProductCardProps) => {
-  const isFeatured = variant === "featured";
-  const roastBadgeClass = `${styles.productBadge} ${roastBadgeClasses[product.roast]}`;
+const fmt = (s: string) => s.replace(/-/g, " ");
+
+export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
+  const [added, setAdded] = useState(false);
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 1800);
+  };
 
   return (
-    <article
-      className={`${styles.productCard} ${variant === "featured" ? styles.featured : ""}`}
-    >
-      <Link to={`/shop/${product.slug}`} className={styles.productLink}>
-        <div className={styles.imageWrapper}>
-          <img
-            className={styles.productImage}
-            src={product.imageUrl}
-            alt={product.name}
-          />
-          <div className={styles.badgeWrapper}>
-            <span className={roastBadgeClass}>{product.roast} ROAST</span>
-          </div>
+    <article className={styles.card}>
+      <Link to={`/shop/${product.slug}`} className={styles.cardLink}>
+        <div className={styles.imageWrap}>
+          <img className={styles.image} src={product.imageUrl} alt={product.name} />
+
+          {product.featured && (
+            <span className={`${styles.badge} ${styles.badgeBestSeller}`}>Best Seller</span>
+          )}
+
+          <span className={styles.weight}>{fmt(product.category)}</span>
+          <div className={styles.overlay} />
+
+          <span
+            className={styles.addBtn}
+            role="button"
+            tabIndex={0}
+            data-added={added}
+            onClick={handleAdd}
+            onKeyDown={(e) => e.key === "Enter" && handleAdd(e as unknown as React.MouseEvent)}
+          >
+            {added ? "✓ Added" : "Add to Cart"}
+          </span>
         </div>
-        <div className={styles.flavorTags}>
+
+        <div className={styles.meta}>
+          <span className={`${styles.dot} ${roastDotClass[product.roast]}`} aria-hidden />
+          <span className={styles.roastLabel}>{product.roast}</span>
+          <span className={styles.metaSep}>·</span>
+          <span className={styles.processLabel}>{fmt(product.category)}</span>
+        </div>
+
+        <div className={styles.titleRow}>
+          <h3 className={styles.title} data-compact={compact}>{product.name}</h3>
+          <span className={styles.price}>{product.price}:-</span>
+        </div>
+
+        <p className={styles.origin}>{fmt(product.origin)}</p>
+
+        <div className={styles.notes}>
           {product.flavorProfile.map((flavor) => (
-            <span key={flavor} className={styles.productBadge}>
-              {flavor}
-            </span>
+            <span key={flavor} className={styles.note}>{flavor}</span>
           ))}
         </div>
-        <div className={styles.productHeader}>
-          <h3 className={styles.productTitle}>{product.name}</h3>
-          <span className={styles.productPrice}>{product.price}:-</span>
-        </div>
-        <p className={styles.productDescription}>{product.description}</p>
       </Link>
-
-      {isFeatured && (
-        <button
-          className={styles.cartIconButton}
-          aria-label={`Add ${product.name} to cart`}
-        >
-          <span className="material-symbols-outlined">add_shopping_cart</span>
-        </button>
-      )}
-
-      <div className={styles.action}>
-        <button className={styles.addButton}>Add to Cart</button>
-        <button className={styles.favoriteButton} aria-label="Add to wishlist">
-          <span className="material-symbols-outlined">favorite</span>
-        </button>
-      </div>
     </article>
   );
 };

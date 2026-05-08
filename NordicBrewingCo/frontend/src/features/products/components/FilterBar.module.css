@@ -1,0 +1,119 @@
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 56px;
+  border-bottom: 1px solid var(--nbc-border);
+  background: var(--nbc-bg);
+  flex-wrap: wrap;
+}
+
+.filterGroups {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.groupLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nbc-mid);
+  font-family: var(--nbc-font-sans);
+  margin-right: 2px;
+}
+
+.pill,
+.pillActive {
+  font-family: var(--nbc-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--nbc-radius-pill);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s var(--nbc-ease);
+  white-space: nowrap;
+}
+
+.pill {
+  background: transparent;
+  border: 1px solid var(--nbc-border);
+  color: var(--nbc-text);
+}
+
+.pill:hover {
+  border-color: var(--nbc-accent);
+  color: var(--nbc-accent);
+}
+
+.pillActive {
+  background: var(--nbc-accent);
+  border: 1px solid var(--nbc-accent);
+  color: white;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--nbc-border);
+  margin: 0 6px;
+}
+
+.filterMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.count {
+  font-size: 12px;
+  color: var(--nbc-mid);
+  font-family: var(--nbc-font-sans);
+  white-space: nowrap;
+}
+
+.sortLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nbc-mid);
+  font-family: var(--nbc-font-sans);
+}
+
+.sortSelect {
+  font-family: var(--nbc-font-sans);
+  font-size: 13px;
+  color: var(--nbc-text);
+  background: transparent;
+  border: 1px solid var(--nbc-border);
+  border-radius: var(--nbc-radius-pill);
+  padding: 6px 28px 6px 14px;
+  cursor: pointer;
+  appearance: auto;
+}
+
+@media (max-width: 900px) {
+  .filterBar {
+    padding: 14px 20px;
+    gap: 12px;
+  }
+
+  .filterGroups {
+    gap: 6px;
+  }
+
+  .divider {
+    display: none;
+  }
+}

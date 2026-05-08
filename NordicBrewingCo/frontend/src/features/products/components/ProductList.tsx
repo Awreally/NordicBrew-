@@ -7,13 +7,22 @@ interface ProductListProps {
 }
 
 export const ProductList = ({ products }: ProductListProps) => {
+  if (products.length === 0) {
+    return (
+      <section className={styles.productGrid}>
+        <div className={styles.empty}>
+          <p className={styles.emptyTitle}>No matches found.</p>
+          <p className={styles.emptyBody}>Try adjusting your filters.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.productGrid}>
-      <div className={styles.productList}>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} compact />
+      ))}
     </section>
   );
 };

@@ -83,4 +83,38 @@
   --radius-md: 8px;
   --spacing-unit: 8px;
   --container-max: 1440px;
+
+  /* NBC design system tokens */
+  --nbc-bg:           #fef9f2;
+  --nbc-bg-dark:      #f2ede6;
+  --nbc-accent:       #2a5c2e;
+  --nbc-accent-dark:  #1a2e1c;
+  --nbc-accent-mid:   #4a7c4e;
+  --nbc-text:         #1e2820;
+  --nbc-mid:          #7a7a6e;
+  --nbc-border:       #ddd8ce;
+  --nbc-roast-light:       #c8a46a;
+  --nbc-roast-medium:      #a07840;
+  --nbc-roast-dark:        #4a3020;
+  --nbc-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --nbc-font-sans:  'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --nbc-radius-sharp: 2px;
+  --nbc-radius-soft:  4px;
+  --nbc-radius-pill:  999px;
+  --nbc-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --auth-bg:           #f7f4ee;
+  --auth-bg-dark:      #ede8df;
+  --auth-accent:       #2a5c2e;
+  --auth-accent-dark:  #1a2e1c;
+  --auth-accent-mid:   #4a7c4e;
+  --auth-text:         #1e2820;
+  --auth-mid:          #7a7a6e;
+  --auth-border:       #ddd8ce;
+  --auth-placeholder:  #a8a89e;
+  --auth-nav-bg:       #1a2e1c;
+  --auth-error:        #b03a2a;
+
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
 }
